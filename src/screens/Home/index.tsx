@@ -6,6 +6,7 @@ import { PieChart } from '@/components/charts/Pie/index';
 import { StyleSheet } from 'react-native-unistyles';
 
 import { CoinAvailable } from '@/@types';
+import { HomeScreenProps } from '@/@types/@react-navigation/stack';
 import { ButtonIcon } from '@/components/buttons/ButtonIcon';
 import { ListHeader } from '@/components/list/Header';
 import { TotalBalanceCard } from '@/components/TotalBalanceCard';
@@ -14,7 +15,7 @@ import { useQuery } from '@/database/index';
 import { Transaction } from '@/database/schemas/transaction';
 import { CoinListItem } from './components/CoinListItem';
 
-export default function Home() {
+export default function HomeScreen({ navigation }: HomeScreenProps) {
   const transactionsQuery = useQuery(Transaction);
   const transactions = transactionsQuery;
 
@@ -70,8 +71,11 @@ export default function Home() {
       coinName={item.text}
       fiatAmount={item.value}
       coinAmount={item.coinAmount}
+      onPress={() => {
+        navigation.navigate('Coin', { coin: item.coin });
+      }}
     />
-  ), []);
+  ), [navigation]);
 
   return (
     <FlatList
@@ -86,7 +90,7 @@ export default function Home() {
             <ListHeader.Root>
               <ListHeader.Title>Coins</ListHeader.Title>
               <ListHeader.Actions>
-                <ButtonIcon iconName="plus" size="sm" color="primary" />
+                <ButtonIcon iconName="plus" size="sm" color="primary" onPress={() => navigation.navigate('TransactionForm')} />
               </ListHeader.Actions>
             </ListHeader.Root>
           </View>
@@ -104,7 +108,7 @@ export default function Home() {
 const styles = StyleSheet.create(((theme, rt) => ({
   container: {
     flex: 1,
-    backgroundColor: '#141716',
+    backgroundColor: theme.colors.background,
     paddingTop: rt.insets.top + theme.spacing[5],
   },
   contentContainerStyle: {

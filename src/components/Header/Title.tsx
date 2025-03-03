@@ -2,9 +2,9 @@ import React from 'react';
 import { Text as RNText, TextProps } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
-type ListHeaderTitleProps = TextProps
+type HeaderTitleProps = TextProps
 
-export function ListHeaderTitle({ style, ...rest }: ListHeaderTitleProps) {
+export function HeaderTitle({ style, ...rest }: HeaderTitleProps) {
   return (
     <RNText style={[styles.text, style]} {...rest} />
   );

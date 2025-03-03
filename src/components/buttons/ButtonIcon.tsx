@@ -4,13 +4,13 @@ import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 import { Icon, IconName } from '../Icon';
 
-type Props = {
+type ButtonIconProps = TouchableOpacityProps & {
   iconName: IconName
   size?: 'sm' | 'lg'
   color?: 'primary'
-} & TouchableOpacityProps
+}
 
-export function ButtonIcon({ iconName, size, style, ...rest }: Props) {
+export function ButtonIcon({ iconName, size, style, ...rest }: ButtonIconProps) {
   styles.useVariants({ size });
 
   return (

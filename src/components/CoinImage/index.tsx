@@ -8,6 +8,7 @@ import ETH from '@/assets/coins/ETH.png';
 import LTC from '@/assets/coins/LTC.png';
 import SOL from '@/assets/coins/SOL.png';
 import XRP from '@/assets/coins/XRP.png';
+import { StyleSheet } from 'react-native-unistyles';
 
 
 type CoinImageProps = ImageProps & {
@@ -23,7 +24,13 @@ const ImageSource = {
   ADA,
 };
 
-export function CoinImage({ coin, ...rest }: CoinImageProps) {
-  return <Image source={ImageSource[coin]} style={{ height: 40, width: 40 }} {...rest} />;
+export function CoinImage({ coin, style, ...rest }: CoinImageProps) {
+  return <Image source={ImageSource[coin]} style={[styles.image, style]} {...rest} />;
 }
 
+const styles = StyleSheet.create({
+  image: {
+    height: 40,
+    width: 40,
+  },
+});

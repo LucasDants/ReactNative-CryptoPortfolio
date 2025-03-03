@@ -14,6 +14,8 @@ type CoinListItemProps = TouchableOpacityProps & {
 }
 
 function CoinListItemComponent({ coin, coinName, coinAmount, fiatAmount, style, ...rest }: CoinListItemProps) {
+  const fiatAmountFormatted = formatNumberToFiat({ number: fiatAmount });
+
   return (
     <ListItem.Root style={[styles.container, style]} {...rest}>
       <CoinImage coin={coin} />
@@ -23,7 +25,7 @@ function CoinListItemComponent({ coin, coinName, coinAmount, fiatAmount, style, 
       </ListItem.Column>
       <ListItem.Column variant="reverse">
         <ListItem.Text>{coinAmount}</ListItem.Text>
-        <ListItem.Text typography="subtitle" color="primary">{formatNumberToFiat({ number: fiatAmount })}</ListItem.Text>
+        <ListItem.Text typography="subtitle" color="primary">{fiatAmountFormatted}</ListItem.Text>
       </ListItem.Column>
     </ListItem.Root>
   );

@@ -6,10 +6,13 @@ type Props = ViewProps & {
   totalFiatAmount: number
 }
 
-export function TotalBalanceCard({ totalFiatAmount, ...rest }: Props) {
+export function TotalBalanceCard({ totalFiatAmount, children, ...rest }: Props) {
+  const fiatAmount = formatNumberToFiat({ number: totalFiatAmount });
+
   return (
     <View style={styles.container} {...rest}>
-      <Text style={styles.title}>{formatNumberToFiat({ number: totalFiatAmount })}</Text>
+      <Text style={styles.title}>{fiatAmount}</Text>
+      {children}
     </View>
   );
 }
