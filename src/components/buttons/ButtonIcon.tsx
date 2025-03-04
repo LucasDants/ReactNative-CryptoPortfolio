@@ -10,8 +10,8 @@ type ButtonIconProps = TouchableOpacityProps & {
   color?: 'primary'
 }
 
-export function ButtonIcon({ iconName, size, style, ...rest }: ButtonIconProps) {
-  styles.useVariants({ size });
+export function ButtonIcon({ iconName, size, color, style, ...rest }: ButtonIconProps) {
+  styles.useVariants({ size, color });
 
   return (
     <TouchableOpacity style={[styles.container, style]} activeOpacity={0.7} {...rest} >

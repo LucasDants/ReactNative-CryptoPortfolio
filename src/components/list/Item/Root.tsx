@@ -18,6 +18,7 @@ const styles = StyleSheet.create(theme => ({
     borderRadius: theme.shapes.md,
     padding: theme.spacing[4],
     justifyContent: 'space-between',
+    alignItems: 'center',
     gap: theme.spacing[3],
   },
 }));

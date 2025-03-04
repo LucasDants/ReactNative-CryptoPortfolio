@@ -24,7 +24,7 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
     let amount = 0;
 
     transactions.forEach(item => {
-
+      console.log(item.coin, item.quantity);
       const coin = item.coin as CoinAvailable;
       const numberSign = item.type === 'buy' ? 1 : -1;
       const fiatAmount = item.quantity * item.pricePerCoin * numberSign;
@@ -42,8 +42,6 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
       amountPerCoin[coin].fiatAmount += fiatAmount;
       amountPerCoin[coin].coinAmount += item.quantity * numberSign;
     });
-
-
 
     const coinsData = Object.entries(amountPerCoin)?.map(([key, value]) => {
       const coin = CRYPTOCURRENCIES[key as CoinAvailable];
@@ -86,11 +84,12 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
           <TotalBalanceCard totalFiatAmount={totalAmount} />
           <AreaChart transactions={transactions} />
           <View style={styles.headerContentWrapper}>
-            <PieChart data={data} title="Coins Overview" />
+            {transactions.length > 0 ? <PieChart data={data} title="Coins Overview" /> : <></>}
+
             <ListHeader.Root>
               <ListHeader.Title>Coins</ListHeader.Title>
               <ListHeader.Actions>
-                <ButtonIcon iconName="plus" size="sm" color="primary" onPress={() => navigation.navigate('TransactionForm')} />
+                <ButtonIcon iconName="plus" size="sm" onPress={() => navigation.navigate('TransactionForm')} />
               </ListHeader.Actions>
             </ListHeader.Root>
           </View>
@@ -116,7 +115,7 @@ const styles = StyleSheet.create(((theme, rt) => ({
     paddingBottom: rt.insets.bottom + theme.spacing[3],
   },
   headerContentWrapper: {
-    paddingHorizontal: theme.spacing[5],
+    paddingHorizontal: theme.spacing[4],
     gap: theme.spacing[3],
   },
 })));

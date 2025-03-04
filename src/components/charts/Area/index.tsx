@@ -39,7 +39,7 @@ export function AreaChart({ transactions, color = '#5DD44E' }: Props) {
       return { date, value: sum };
     });
 
-    return result;
+    return [{ value: 0 }, ...result];
   }
 
   const data = getTotalBalancePerDay();

@@ -23,6 +23,7 @@ module.exports = function (api) {
         },
       ],
       ['react-native-unistyles/plugin'],
+      'react-native-reanimated/plugin',
     ],
   };
 };

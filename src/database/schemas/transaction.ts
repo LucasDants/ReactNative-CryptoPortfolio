@@ -6,6 +6,7 @@ type GenerateProps = {
   type: CoinOperation;
   quantity: number;
   pricePerCoin: number;
+  date: Date
 }
 
 export class Transaction extends Realm.Object<Transaction> {
@@ -16,19 +17,24 @@ export class Transaction extends Realm.Object<Transaction> {
   pricePerCoin!: number;
   date!: Date;
 
-  static generate({ coin, type, quantity, pricePerCoin }: GenerateProps) {
+  static generate({ coin, type, quantity, pricePerCoin, date }: GenerateProps) {
     return {
       _id: new Realm.BSON.ObjectId(),
       coin,
       type,
       quantity,
       pricePerCoin,
-      date: new Date(),
+      date,
     };
+  }
+
+  static getObjectId(id: string) {
+    return new Realm.BSON.ObjectId(id);
   }
 
   static schema = {
     name: 'Transaction',
+    primaryKey: '_id',
     properties: {
       _id: 'objectId',
       coin: 'string',

@@ -1,9 +1,10 @@
 export const colors = {
-  primary: 'rgb(190, 9, 36)',
+  primary: '#BE0924',
+  success: '#5DD44E',
 
   white: '#FFFFFF',
   black: '#000000',
 
   background: '#141716',
-  shape: 'hsl(144, 6%, 15%)',
+  shape: '#242926',
 } as const;

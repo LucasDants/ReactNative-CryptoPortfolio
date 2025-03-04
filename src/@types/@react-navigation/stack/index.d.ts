@@ -1,5 +1,4 @@
-import { CoinAvailable } from '@/@types';
-import { Transaction } from '@/database/schemas/transaction';
+import { CoinAvailable, CoinOperation } from '@/@types';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 export type RootStackParamList = {
@@ -9,7 +8,14 @@ export type RootStackParamList = {
   }
   TransactionForm: {
     coin?: CoinAvailable
-    transaction?: Transaction
+    transaction?: {
+      id: string
+      coin: CoinAvailable
+      type: CoinOperation
+      date: string
+      quantity: number
+      pricePerCoin: number
+    }
   } | undefined
 };
 

@@ -15,7 +15,7 @@
 		675CC4BFEFA0BF512488174D /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
 		7699B88040F8A987B510C191 /* libPods-CryptoPortfolio-CryptoPortfolioTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-CryptoPortfolio-CryptoPortfolioTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		95098A732D7519C300CE2231 /* bundle.realm in Resources */ = {isa = PBXBuildFile; fileRef = 95098A722D7519C300CE2231 /* bundle.realm */; };
+		9535A3D62D774E6B002E8A60 /* bundle.realm in Resources */ = {isa = PBXBuildFile; fileRef = 9535A3D52D774E6B002E8A60 /* bundle.realm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,7 +46,7 @@
 		5DCACB8F33CDC322A6C60F78 /* libPods-CryptoPortfolio.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CryptoPortfolio.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = CryptoPortfolio/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-CryptoPortfolio-CryptoPortfolioTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoPortfolio-CryptoPortfolioTests.release.xcconfig"; path = "Target Support Files/Pods-CryptoPortfolio-CryptoPortfolioTests/Pods-CryptoPortfolio-CryptoPortfolioTests.release.xcconfig"; sourceTree = "<group>"; };
-		95098A722D7519C300CE2231 /* bundle.realm */ = {isa = PBXFileReference; lastKnownFileType = file; name = bundle.realm; path = ../android/app/src/main/assets/bundle.realm; sourceTree = "<group>"; };
+		9535A3D52D774E6B002E8A60 /* bundle.realm */ = {isa = PBXFileReference; lastKnownFileType = file; name = bundle.realm; path = ../android/app/src/main/assets/bundle.realm; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -121,7 +121,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				95098A722D7519C300CE2231 /* bundle.realm */,
+				9535A3D52D774E6B002E8A60 /* bundle.realm */,
 				13B07FAE1A68108700A75B9A /* CryptoPortfolio */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* CryptoPortfolioTests */,
@@ -247,7 +247,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95098A732D7519C300CE2231 /* bundle.realm in Resources */,
+				9535A3D62D774E6B002E8A60 /* bundle.realm in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				675CC4BFEFA0BF512488174D /* PrivacyInfo.xcprivacy in Resources */,
@@ -590,10 +590,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
@@ -662,10 +659,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;

@@ -2,6 +2,7 @@ import { CoinAvailable } from '@/@types';
 import { CoinImage } from '@/components/CoinImage';
 import { ListItem } from '@/components/list/Item';
 import { formatNumberToFiat } from '@/utils/formatNumberToFiat';
+import { formatNumberToMaxDisplay } from '@/utils/formatNumberToMaxDisplay';
 import React, { memo } from 'react';
 import { TouchableOpacityProps } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
@@ -15,6 +16,7 @@ type CoinListItemProps = TouchableOpacityProps & {
 
 function CoinListItemComponent({ coin, coinName, coinAmount, fiatAmount, style, ...rest }: CoinListItemProps) {
   const fiatAmountFormatted = formatNumberToFiat({ number: fiatAmount });
+  const coinAmountFormatted = formatNumberToMaxDisplay(coinAmount);
 
   return (
     <ListItem.Root style={[styles.container, style]} {...rest}>
@@ -24,8 +26,8 @@ function CoinListItemComponent({ coin, coinName, coinAmount, fiatAmount, style, 
         <ListItem.Text typography="subtitle">{coinName}</ListItem.Text>
       </ListItem.Column>
       <ListItem.Column variant="reverse">
-        <ListItem.Text>{coinAmount}</ListItem.Text>
-        <ListItem.Text typography="subtitle" color="primary">{fiatAmountFormatted}</ListItem.Text>
+        <ListItem.Text>{coinAmountFormatted}</ListItem.Text>
+        <ListItem.Text typography="subtitle">{fiatAmountFormatted}</ListItem.Text>
       </ListItem.Column>
     </ListItem.Root>
   );
