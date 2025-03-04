@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useRef } from 'react';
 
 import { CoinAvailable, CoinOperation } from '@/@types';
 import { CoinScreenProps } from '@/@types/@react-navigation/stack';
@@ -19,6 +19,8 @@ export default function CoinScreen({ navigation, route }: CoinScreenProps) {
   const { coin } = route.params;
 
   const coinColor = CRYPTOCURRENCIES[coin].color;
+
+  const flatListRef = useRef<FlatList>(null);
 
   const transactionsQuery = useQuery({
     type: Transaction,
@@ -64,6 +66,10 @@ export default function CoinScreen({ navigation, route }: CoinScreenProps) {
     );
   }, [navigation]);
 
+  const toggleFlatListScroll = useCallback((isVisible: boolean) => {
+    flatListRef.current?.setNativeProps({ scrollEnabled: !isVisible });
+  }, []);
+
 
   return (
     <FlatList
@@ -84,7 +90,7 @@ export default function CoinScreen({ navigation, route }: CoinScreenProps) {
               <Text style={[styles.coinBalance, { color: coinColor }]}>{coin} {totalCoinAmount}</Text>
             </TotalBalanceCard>
           </View>
-          <AreaChart transactions={transactionsQuery} color={CRYPTOCURRENCIES[coin].color} />
+          <AreaChart transactions={transactionsQuery} color={CRYPTOCURRENCIES[coin].color} onPointerShow={toggleFlatListScroll} />
           <View style={styles.headerContentWrapper}>
             <ListHeader.Root>
               <ListHeader.Title>Transactions</ListHeader.Title>
@@ -99,6 +105,7 @@ export default function CoinScreen({ navigation, route }: CoinScreenProps) {
       renderItem={renderItem}
       keyExtractor={item => String(item._id)}
       contentContainerStyle={styles.contentContainerStyle}
+      ref={flatListRef}
     />
   );
 }

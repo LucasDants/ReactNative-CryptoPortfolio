@@ -9,12 +9,17 @@ import { AreaChartPointerLabel } from './PointerLabel';
 type Props = {
   transactions: Results<Transaction>
   color?: string
+  onPointerShow?: (isVisible: boolean) => void
 }
 
-export function AreaChart({ transactions, color = '#5DD44E' }: Props) {
+export function AreaChart({ transactions, color = '#5DD44E', onPointerShow }: Props) {
 
   function getTotalBalancePerDay() {
     const dailyBalances: Record<string, number> = {};
+
+    if (transactions.length === 0) {
+      return [{ value: 0 }, { value: 0 }];
+    }
 
     transactions.forEach((tx) => {
       const dateKey = dayjs(tx.date).format('YYYY-MM-DD');
@@ -60,13 +65,13 @@ export function AreaChart({ transactions, color = '#5DD44E' }: Props) {
         color={color}
         disableScroll
         animationDuration={1200}
+        yAxisOffset={transactions.length === 0 ? -1 : 0}
         curved
         hideDataPoints
         hideAxesAndRules
         adjustToWidth
         yAxisLabelWidth={0}
         xAxisLabelsHeight={0}
-
         initialSpacing={0}
 
         pointerConfig={{
@@ -78,6 +83,12 @@ export function AreaChart({ transactions, color = '#5DD44E' }: Props) {
           activatePointersOnLongPress: true,
           autoAdjustPointerLabelPosition: true,
           pointerLabelComponent: PointerLabelComponent,
+        }}
+
+        getPointerProps={(props: { pointerX: number }) => {
+          if (onPointerShow != null) {
+            onPointerShow(props?.pointerX > 0);
+          }
         }}
       />
     </View>

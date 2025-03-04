@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, useRef } from 'react';
 import { FlatList, ListRenderItem, View } from 'react-native';
 
 import { AreaChart } from '@/components/charts/Area';
@@ -14,10 +14,13 @@ import { CRYPTOCURRENCIES } from '@/config/cryptocurrencies';
 import { useQuery } from '@/database/index';
 import { Transaction } from '@/database/schemas/transaction';
 import { CoinListItem } from './components/CoinListItem';
+import { HomeEmptyList } from './components/ListEmptyComponent';
 
 export default function HomeScreen({ navigation }: HomeScreenProps) {
   const transactionsQuery = useQuery(Transaction);
   const transactions = transactionsQuery;
+
+  const flatListRef = useRef<FlatList>(null);
 
   const { data, totalAmount } = useMemo(() => {
     const amountPerCoin = {} as Record<CoinAvailable, { fiatAmount: number, coinAmount: number, coin: CoinAvailable, name: string }>;
@@ -75,6 +78,10 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
     />
   ), [navigation]);
 
+  const toggleFlatListScroll = useCallback((isVisible: boolean) => {
+    flatListRef.current?.setNativeProps({ scrollEnabled: !isVisible });
+  }, []);
+
   return (
     <FlatList
       data={data}
@@ -82,10 +89,9 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
       ListHeaderComponent={
         <View>
           <TotalBalanceCard totalFiatAmount={totalAmount} />
-          <AreaChart transactions={transactions} />
+          <AreaChart transactions={transactions} onPointerShow={toggleFlatListScroll} />
           <View style={styles.headerContentWrapper}>
             {transactions.length > 0 ? <PieChart data={data} title="Coins Overview" /> : <></>}
-
             <ListHeader.Root>
               <ListHeader.Title>Coins</ListHeader.Title>
               <ListHeader.Actions>
@@ -99,6 +105,8 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
       renderItem={renderItem}
       keyExtractor={item => String(item.coin)}
       contentContainerStyle={styles.contentContainerStyle}
+      ListEmptyComponent={<HomeEmptyList />}
+      ref={flatListRef}
     />
   );
 }
@@ -113,6 +121,7 @@ const styles = StyleSheet.create(((theme, rt) => ({
   contentContainerStyle: {
     gap: theme.spacing[3],
     paddingBottom: rt.insets.bottom + theme.spacing[3],
+    flexGrow: 1,
   },
   headerContentWrapper: {
     paddingHorizontal: theme.spacing[4],

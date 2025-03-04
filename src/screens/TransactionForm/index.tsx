@@ -11,9 +11,10 @@ import { Transaction } from '@/database/schemas/transaction';
 import { zodResolver } from '@hookform/resolvers/zod';
 import React from 'react';
 import { Controller, useForm, useWatch } from 'react-hook-form';
-import { Keyboard, Text, TouchableWithoutFeedback, View } from 'react-native';
+import { Alert, Keyboard, Text, TouchableWithoutFeedback, View } from 'react-native';
 import Realm from 'realm';
 
+import { showToast } from '@/utils/showToast';
 import { StyleSheet } from 'react-native-unistyles';
 import * as z from 'zod';
 
@@ -72,11 +73,48 @@ export default function TransactionFormScreen({ navigation, route }: Transaction
   }
 
   function handleDeleteTransaction() {
-    if (transaction?.id != null) {
-      realm.write(() => {
-        const object = realm.objectForPrimaryKey(Transaction, Transaction.getObjectId(transaction.id));
-        realm.delete(object);
-      });
+    Alert.alert(
+      'Delete transaction',
+      'Are you sure you want to delete this transaction?',
+      [
+        {
+          style: 'cancel',
+          text: 'Cancel',
+        },
+        {
+          style: 'destructive',
+          text: 'Delete',
+          onPress: onDeleteTransaction,
+        },
+      ],
+      {
+        cancelable: true,
+        userInterfaceStyle: 'dark',
+      }
+    );
+
+  }
+
+  function onDeleteTransaction() {
+    try {
+      if (transaction?.id != null) {
+        realm.write(() => {
+          const object = realm.objectForPrimaryKey(Transaction, Transaction.getObjectId(transaction.id));
+          realm.delete(object);
+        });
+      }
+
+      showToast({ title: 'Success!', description: 'Transaction deleted with Success!' });
+      const isEmpty = realm.objects(Transaction).isEmpty();
+
+      if (isEmpty) {
+        navigation.popToTop();
+      } else {
+        navigation.goBack();
+      }
+
+    } catch (err) {
+      showToast({ title: 'Error!', description: 'Something went wrong deleting your transaction!', type: 'error' });
     }
   }
 
@@ -93,14 +131,22 @@ export default function TransactionFormScreen({ navigation, route }: Transaction
             object.pricePerCoin = data.pricePerCoin;
             object.date = data.date;
           });
+
+          showToast({ title: 'Success!', description: 'Transaction updated with Success!', type: 'success' });
+
+          navigation.goBack();
         }
       } else {
         realm.write(() => {
           realm.create('Transaction', Transaction.generate(data), Realm.UpdateMode.Modified);
         });
+
+        showToast({ title: 'Success!', description: 'Transaction created with Success!', type: 'success' });
+
+        navigation.goBack();
       }
     } catch (err) {
-      console.log(err);
+      showToast({ title: 'Error!', description: 'Transaction was not saved, try again!', type: 'error' });
     }
   }
 
