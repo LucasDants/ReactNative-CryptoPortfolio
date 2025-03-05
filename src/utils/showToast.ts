@@ -14,6 +14,5 @@ export function showToast({ type = 'success', title, description}: Props) {
       text1: title,
       text2: description,
       topOffset: UnistylesRuntime.insets.top + 12,
-      autoHide: false,
     });
 }

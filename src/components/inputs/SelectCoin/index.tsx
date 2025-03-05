@@ -2,6 +2,7 @@ import { CoinAvailable } from '@/@types';
 import { CoinImage } from '@/components/CoinImage';
 import { ListHeader } from '@/components/list/Header';
 import { ListItem } from '@/components/list/Item';
+import { LIST_ITEM_HEIGHT } from '@/components/list/Item/Root';
 import { CRYPTOCURRENCIES } from '@/config/cryptocurrencies';
 import { BottomSheetBackdrop, BottomSheetBackdropProps, BottomSheetFlatList, BottomSheetModal } from '@gorhom/bottom-sheet';
 import React, { useCallback, useRef } from 'react';
@@ -74,6 +75,9 @@ export function SelectCoin({ coin, setSelectedCoin }: Props) {
 
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.bottomSheetContentContainerStyle}
+          getItemLayout={(_, index) => (
+            { length: LIST_ITEM_HEIGHT, offset: LIST_ITEM_HEIGHT * index, index }
+          )}
           renderItem={renderItem}
         />
       </BottomSheetModal>

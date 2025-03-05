@@ -1,4 +1,4 @@
-import { CoinOperation } from '@/@types';
+import { CoinAvailable, CoinOperation } from '@/@types';
 import { TransactionFormScreenProps } from '@/@types/@react-navigation/stack';
 import { Button } from '@/components/buttons/Button';
 import { TransactionTypeButton } from '@/components/buttons/TransactionTypeButton';
@@ -9,7 +9,7 @@ import { SelectDate } from '@/components/inputs/SelectDate';
 import { useRealm } from '@/database';
 import { Transaction } from '@/database/schemas/transaction';
 import { zodResolver } from '@hookform/resolvers/zod';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Controller, useForm, useWatch } from 'react-hook-form';
 import { Alert, Keyboard, Text, TouchableWithoutFeedback, View } from 'react-native';
 import Realm from 'realm';
@@ -53,6 +53,10 @@ export default function TransactionFormScreen({ navigation, route }: Transaction
   const typeWatch = useWatch({ control, name: 'type' });
   const coinWatch = useWatch({ control, name: 'coin' });
   const dateWatch = useWatch({ control, name: 'date' });
+
+  const handleSelectCoin = useCallback((newCoin: CoinAvailable) => {
+    setValue('coin', newCoin, { shouldDirty: true, shouldValidate: isSubmitted });
+  }, [setValue, isSubmitted]);
 
   function handleChangeNumericInput(value: string, onChange: (...event: any[]) => void) {
     if (value === '') {
@@ -164,7 +168,7 @@ export default function TransactionFormScreen({ navigation, route }: Transaction
           }
         </Header.Root>
         <View style={styles.form}>
-          <SelectCoin coin={coinWatch} setSelectedCoin={(newCoin) => setValue('coin', newCoin, { shouldDirty: true, shouldValidate: isSubmitted })} />
+          <SelectCoin coin={coinWatch} setSelectedCoin={handleSelectCoin} />
           <Controller
             control={control}
             name="quantity"
@@ -172,7 +176,6 @@ export default function TransactionFormScreen({ navigation, route }: Transaction
               <BaseInput
                 placeholder="Quantity"
                 keyboardType="numeric"
-                returnKeyType="next"
                 onBlur={onBlur}
                 value={value as unknown as string}
                 defaultValue={String(transaction?.quantity ?? '')}
@@ -187,8 +190,8 @@ export default function TransactionFormScreen({ navigation, route }: Transaction
               <BaseInput
                 placeholder="Price per coin"
                 keyboardType="numeric"
-                returnKeyType="done"
                 onBlur={onBlur}
+                submitBehavior="submit"
                 value={value as unknown as string}
                 defaultValue={String(transaction?.pricePerCoin ?? '')}
                 onChangeText={(text) => handleChangeNumericInput(text, onChange)}
