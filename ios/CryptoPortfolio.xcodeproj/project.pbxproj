@@ -16,6 +16,8 @@
 		7699B88040F8A987B510C191 /* libPods-CryptoPortfolio-CryptoPortfolioTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-CryptoPortfolio-CryptoPortfolioTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		9535A3D62D774E6B002E8A60 /* bundle.realm in Resources */ = {isa = PBXBuildFile; fileRef = 9535A3D52D774E6B002E8A60 /* bundle.realm */; };
+		AF63F43076514055906DEC32 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B758FFA99B634834A39EDAD9 /* BootSplash.storyboard */; };
+		DFDE699B52BF43EEA13C5544 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6A44748CDAA457993C24A20 /* Colors.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = CryptoPortfolio/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-CryptoPortfolio-CryptoPortfolioTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoPortfolio-CryptoPortfolioTests.release.xcconfig"; path = "Target Support Files/Pods-CryptoPortfolio-CryptoPortfolioTests/Pods-CryptoPortfolio-CryptoPortfolioTests.release.xcconfig"; sourceTree = "<group>"; };
 		9535A3D52D774E6B002E8A60 /* bundle.realm */ = {isa = PBXFileReference; lastKnownFileType = file; name = bundle.realm; path = ../android/app/src/main/assets/bundle.realm; sourceTree = "<group>"; };
+		B758FFA99B634834A39EDAD9 /* BootSplash.storyboard */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = BootSplash.storyboard; path = CryptoPortfolio/BootSplash.storyboard; sourceTree = "<group>"; };
+		D6A44748CDAA457993C24A20 /* Colors.xcassets */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = folder.assetcatalog; name = Colors.xcassets; path = CryptoPortfolio/Colors.xcassets; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -97,6 +101,8 @@
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */,
+				B758FFA99B634834A39EDAD9 /* BootSplash.storyboard */,
+				D6A44748CDAA457993C24A20 /* Colors.xcassets */,
 			);
 			name = CryptoPortfolio;
 			sourceTree = "<group>";
@@ -251,6 +257,8 @@
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				675CC4BFEFA0BF512488174D /* PrivacyInfo.xcprivacy in Resources */,
+				AF63F43076514055906DEC32 /* BootSplash.storyboard in Resources */,
+				DFDE699B52BF43EEA13C5544 /* Colors.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,6 +484,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = CryptoPortfolio/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Crypto Portfolio";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -503,6 +512,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = CryptoPortfolio/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Crypto Portfolio";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -590,7 +600,10 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = "$(inherited)  ";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
@@ -659,7 +672,10 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = "$(inherited)  ";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;
