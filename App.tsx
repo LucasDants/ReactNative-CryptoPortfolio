@@ -18,10 +18,10 @@ import { RealmProvider } from './src/database';
 //! If all the transactions for one coin were deleted navigate back from screen
 //! Start empty home with a better UI
 //! Chart press tooltip disable scroll
-// Add Icon
+//! Add Icon
+//! Add Splash Screen
+// size breakpoints
 // Add App Font
-// Add Splash Screen
-// See about the Victory Native Chart
 // Check Performance
 // Add Documentation
 

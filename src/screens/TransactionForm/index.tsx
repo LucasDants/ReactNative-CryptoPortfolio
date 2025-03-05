@@ -231,6 +231,7 @@ const styles = StyleSheet.create(((theme, rt) => ({
     color: theme.colors.primary,
     fontSize: theme.fontSize.md,
     lineHeight: theme.fontSize.xl,
+    fontFamily: theme.fonts.inter.regular,
   },
   transactionButtonWrapper: {
     flexDirection: 'row',

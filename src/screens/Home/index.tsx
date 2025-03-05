@@ -27,7 +27,6 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
     let amount = 0;
 
     transactions.forEach(item => {
-      console.log(item.coin, item.quantity);
       const coin = item.coin as CoinAvailable;
       const numberSign = item.type === 'buy' ? 1 : -1;
       const fiatAmount = item.quantity * item.pricePerCoin * numberSign;

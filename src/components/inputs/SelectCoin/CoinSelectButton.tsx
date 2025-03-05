@@ -48,6 +48,7 @@ const styles = StyleSheet.create(theme => ({
   emptyText: {
     color: theme.colors.white,
     fontSize: theme.fontSize.lg,
+    fontFamily: theme.fonts.inter.regular,
   },
   iconWrapper: {
     width: 40,

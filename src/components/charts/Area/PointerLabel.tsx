@@ -36,7 +36,7 @@ const styles = StyleSheet.create(theme => ({
     borderColor: theme.colors.white,
   },
   text: {
-    fontWeight: 'bold',
+    fontFamily: theme.fonts.inter.bold,
     color: theme.colors.white,
     textAlign: 'center',
   },

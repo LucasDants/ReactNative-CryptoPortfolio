@@ -7,8 +7,8 @@ export function HomeEmptyList() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.icon}>⤴</Text>
-      <Text style={styles.textIcon}>🥲</Text>
+      <Text style={styles.textIcon}>⤴</Text>
+      <Text style={styles.sadIcon}>🥲</Text>
       <Text style={styles.text}>You do not have transactions yet, click on the plus (+) button to start storing your transactions!</Text>
     </View>
   );
@@ -21,12 +21,11 @@ const styles = StyleSheet.create(theme => ({
     alignItems: 'flex-end',
     paddingHorizontal: theme.spacing[5],
   },
-  icon: {
+  textIcon: {
     color: theme.colors.primary,
     fontSize: theme.fontSize['4xl'],
-
   },
-  textIcon: {
+  sadIcon: {
     fontSize: theme.fontSize['7xl'],
     alignSelf: 'center',
     marginBottom: theme.spacing[2],
@@ -35,7 +34,7 @@ const styles = StyleSheet.create(theme => ({
     color: theme.colors.white,
     fontSize: theme.fontSize.lg,
     textAlign: 'center',
-    fontWeight: 'medium',
+    fontFamily: theme.fonts.inter.medium,
   },
 }));
 

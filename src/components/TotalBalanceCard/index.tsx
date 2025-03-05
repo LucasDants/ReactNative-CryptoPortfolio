@@ -1,6 +1,7 @@
 import { formatNumberToFiat } from '@/utils/formatNumberToFiat';
 import React from 'react';
-import { StyleSheet, Text, View, ViewProps } from 'react-native';
+import { Text, View, ViewProps } from 'react-native';
+import { StyleSheet } from 'react-native-unistyles';
 
 type Props = ViewProps & {
   totalFiatAmount: number
@@ -18,13 +19,13 @@ export function TotalBalanceCard({ totalFiatAmount, children, ...rest }: Props) 
 }
 
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create(theme => ({
   container: {
     alignItems: 'center',
   },
   title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: 'white',
+    fontSize: theme.fontSize['4xl'],
+    fontFamily: theme.fonts.inter.bold,
+    color: theme.colors.white,
   },
-});
+}));

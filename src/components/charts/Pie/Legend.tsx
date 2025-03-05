@@ -43,7 +43,7 @@ const styles = StyleSheet.create(theme => ({
   text: {
     color: theme.colors.white,
     fontSize: theme.fontSize.sm,
-
+    fontFamily: theme.fonts.inter.regular,
   },
 }));
 

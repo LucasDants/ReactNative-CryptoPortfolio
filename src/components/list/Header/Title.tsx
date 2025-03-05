@@ -14,7 +14,7 @@ const styles = StyleSheet.create((theme) => ({
   text: {
     color: theme.colors.white,
     fontSize: theme.fontSize.xl,
-    fontWeight: '600',
+    fontFamily: theme.fonts.inter.semibold,
   },
 }));
 

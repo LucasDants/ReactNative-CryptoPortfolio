@@ -38,7 +38,6 @@ export function SelectDate({ date, onChangeDate }: DatePickerProps) {
         buttonColor={styles.primaryColor.color}
         dividerColor={styles.primaryColor.color}
         onConfirm={(newDate) => {
-          console.log(newDate);
           onChangeDate(newDate);
           setOpen(false);
         }}
@@ -57,6 +56,7 @@ const styles = StyleSheet.create(theme => ({
   text: {
     color: theme.colors.white,
     fontSize: theme.fontSize.lg,
+    fontFamily: theme.fonts.inter.regular,
   },
   icon: {
     fontSize: theme.fontSize['2xl'],

@@ -33,5 +33,6 @@ const styles = StyleSheet.create(theme => ({
 
     color: theme.colors.white,
     fontSize: theme.fontSize.lg,
+    fontFamily: theme.fonts.inter.regular,
   },
 }));

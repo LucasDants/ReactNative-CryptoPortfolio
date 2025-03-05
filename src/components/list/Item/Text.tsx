@@ -19,7 +19,7 @@ const styles = StyleSheet.create((theme) => ({
   text: {
     color: theme.colors.white,
     fontSize: theme.fontSize.lg,
-    fontWeight: '600',
+    fontFamily: theme.fonts.inter.semibold,
 
     variants: {
       color: {
@@ -31,7 +31,7 @@ const styles = StyleSheet.create((theme) => ({
       typography: {
         subtitle: {
           fontSize: theme.fontSize.sm,
-          fontWeight: 400,
+          fontFamily: theme.fonts.inter.regular,
         },
       },
     },

@@ -51,9 +51,9 @@ const styles = StyleSheet.create(theme => ({
     gap: theme.spacing[3],
   },
   title: {
-    color: 'white',
+    color: theme.colors.white,
     fontSize: theme.fontSize.lg,
-    fontWeight: 'bold',
+    fontFamily: theme.fonts.inter.bold,
   },
   chartContent: {
     alignItems: 'center',

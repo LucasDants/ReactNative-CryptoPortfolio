@@ -86,6 +86,7 @@ const styles = StyleSheet.create(theme => ({
   title: {
     fontSize: theme.fontSize.lg,
     color: theme.colors.white,
+    fontFamily: theme.fonts.inter.medium,
   },
 }));
 
