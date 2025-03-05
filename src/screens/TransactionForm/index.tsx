@@ -109,7 +109,7 @@ export default function TransactionFormScreen({ navigation, route }: Transaction
       }
 
       showToast({ title: 'Success!', description: 'Transaction deleted with Success!' });
-      const isEmpty = realm.objects(Transaction).isEmpty();
+      const isEmpty = realm.objects(Transaction).filtered('coin == $0', transaction?.coin).isEmpty();
 
       if (isEmpty) {
         navigation.popToTop();

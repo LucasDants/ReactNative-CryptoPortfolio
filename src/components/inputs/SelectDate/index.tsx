@@ -2,7 +2,7 @@ import { Icon } from '@/components/Icon';
 import { ListItem } from '@/components/list/Item';
 import dayjs from 'dayjs';
 import React, { useState } from 'react';
-import { Text } from 'react-native';
+import { Keyboard, Text } from 'react-native';
 import RNDatePicker from 'react-native-date-picker';
 
 import { StyleSheet } from 'react-native-unistyles';
@@ -15,9 +15,15 @@ type DatePickerProps = {
 export function SelectDate({ date, onChangeDate }: DatePickerProps) {
   const [open, setOpen] = useState(false);
 
+
+  function handleOpen() {
+    Keyboard.dismiss();
+    setOpen(true);
+  }
+
   return (
     <>
-      <ListItem.Root style={styles.container} onPress={() => setOpen(true)}>
+      <ListItem.Root style={styles.container} onPress={handleOpen}>
         <ListItem.Column>
           <Text style={styles.text}>{dayjs(date).format('DD/MM/YYYY')}</Text>
         </ListItem.Column>
