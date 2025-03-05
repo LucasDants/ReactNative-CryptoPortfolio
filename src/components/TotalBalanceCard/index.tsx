@@ -24,7 +24,11 @@ const styles = StyleSheet.create(theme => ({
     alignItems: 'center',
   },
   title: {
-    fontSize: theme.fontSize['4xl'],
+    fontSize: {
+      sm: theme.fontSize['4xl'],
+      md: theme.fontSize['5xl'],
+      lg: theme.fontSize['7xl'],
+    },
     fontFamily: theme.fonts.inter.bold,
     color: theme.colors.white,
   },

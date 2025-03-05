@@ -8,11 +8,13 @@ import { StyleSheet } from 'react-native-unistyles';
 import { CoinAvailable } from '@/@types';
 import { HomeScreenProps } from '@/@types/@react-navigation/stack';
 import { ButtonIcon } from '@/components/buttons/ButtonIcon';
+import { Header } from '@/components/Header';
 import { ListHeader } from '@/components/list/Header';
 import { TotalBalanceCard } from '@/components/TotalBalanceCard';
 import { CRYPTOCURRENCIES } from '@/config/cryptocurrencies';
 import { useQuery } from '@/database/index';
 import { Transaction } from '@/database/schemas/transaction';
+import { getGreeting } from '@/utils/getGreenting';
 import { CoinListItem } from './components/CoinListItem';
 import { HomeEmptyList } from './components/ListEmptyComponent';
 
@@ -21,6 +23,8 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
   const transactions = transactionsQuery;
 
   const flatListRef = useRef<FlatList>(null);
+
+  const greeting = getGreeting();
 
   const { data, totalAmount } = useMemo(() => {
     const amountPerCoin = {} as Record<CoinAvailable, { fiatAmount: number, coinAmount: number, coin: CoinAvailable, name: string }>;
@@ -86,7 +90,10 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
       data={data}
       style={styles.container}
       ListHeaderComponent={
-        <View>
+        <>
+          <Header.Root style={styles.headerContentWrapper}>
+            <Header.Title>{greeting}!</Header.Title>
+          </Header.Root>
           <TotalBalanceCard totalFiatAmount={totalAmount} />
           <AreaChart transactions={transactions} onPointerShow={toggleFlatListScroll} />
           <View style={styles.headerContentWrapper}>
@@ -98,7 +105,7 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
               </ListHeader.Actions>
             </ListHeader.Root>
           </View>
-        </View>
+        </>
       }
       showsVerticalScrollIndicator={false}
       renderItem={renderItem}
@@ -115,15 +122,35 @@ const styles = StyleSheet.create(((theme, rt) => ({
   container: {
     flex: 1,
     backgroundColor: theme.colors.background,
-    paddingTop: rt.insets.top + theme.spacing[5],
+    paddingTop: {
+      sm: rt.insets.top + theme.spacing[5],
+      md: rt.insets.top + theme.spacing[6],
+      lg: rt.insets.top + theme.spacing[8],
+    },
   },
   contentContainerStyle: {
-    gap: theme.spacing[3],
-    paddingBottom: rt.insets.bottom + theme.spacing[3],
+    gap: {
+      sm: theme.spacing[3],
+      md: theme.spacing[4],
+      lg: theme.spacing[6],
+    },
+    paddingBottom: {
+      sm: rt.insets.bottom + theme.spacing[3],
+      md: rt.insets.bottom + theme.spacing[4],
+      lg: rt.insets.bottom + theme.spacing[6],
+    },
     flexGrow: 1,
   },
   headerContentWrapper: {
-    paddingHorizontal: theme.spacing[4],
-    gap: theme.spacing[3],
+    paddingHorizontal: {
+      sm: theme.spacing[4],
+      md: theme.spacing[5],
+      lg: theme.spacing[7],
+    },
+    gap: {
+      sm: theme.spacing[3],
+      md: theme.spacing[4],
+      lg: theme.spacing[6],
+    },
   },
 })));

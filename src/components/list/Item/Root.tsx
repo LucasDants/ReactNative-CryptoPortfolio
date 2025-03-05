@@ -15,11 +15,22 @@ const styles = StyleSheet.create(theme => ({
   container: {
     flexDirection: 'row',
     backgroundColor: theme.colors.shape,
-    borderRadius: theme.shapes.md,
-    padding: theme.spacing[4],
+    borderRadius: {
+      sm: theme.shapes.md,
+      lg: theme.shapes.lg,
+    },
+    padding: {
+      sm: theme.spacing[4],
+      md: theme.spacing[5],
+      lg: theme.spacing[7],
+    },
     justifyContent: 'space-between',
     alignItems: 'center',
-    gap: theme.spacing[3],
+    gap: {
+      sm: theme.spacing[3],
+      md: theme.spacing[4],
+      lg: theme.spacing[6],
+    },
   },
 }));
 

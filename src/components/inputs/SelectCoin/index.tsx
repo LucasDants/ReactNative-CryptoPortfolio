@@ -83,17 +83,32 @@ export function SelectCoin({ coin, setSelectedCoin }: Props) {
 
 const styles = StyleSheet.create((theme, rt) => ({
   bottomSheetContentContainerStyle: {
-    gap: theme.spacing[3],
-    paddingBottom: rt.insets.bottom + theme.spacing[3],
+    gap: {
+      sm: theme.spacing[3],
+      md: theme.spacing[4],
+      lg: theme.spacing[6],
+    },
+    paddingBottom: {
+      sm: rt.insets.bottom + theme.spacing[3],
+      md: rt.insets.bottom + theme.spacing[4],
+      lg: rt.insets.bottom + theme.spacing[6],
+    },
   },
   title: {
-    marginBottom: theme.spacing[3],
+    marginBottom: {
+      sm: theme.spacing[3],
+      md: theme.spacing[4],
+      lg: theme.spacing[6],
+    },
   },
   bottomSheetStyle: {
-    paddingHorizontal: theme.spacing[4],
+    paddingHorizontal: {
+      sm: theme.spacing[4],
+      md: theme.spacing[5],
+      lg: theme.spacing[7],
+    },
   },
   bottomSheetBackgroundStyle: {
     backgroundColor: theme.colors.background,
   },
-
 }));

@@ -51,15 +51,23 @@ export function SelectDate({ date, onChangeDate }: DatePickerProps) {
 
 const styles = StyleSheet.create(theme => ({
   container: {
-    height: 60,
+    minHeight: 60,
   },
   text: {
     color: theme.colors.white,
-    fontSize: theme.fontSize.lg,
+    fontSize: {
+      sm: theme.fontSize.lg,
+      md: theme.fontSize.xl,
+      lg: theme.fontSize['3xl'],
+    },
     fontFamily: theme.fonts.inter.regular,
   },
   icon: {
-    fontSize: theme.fontSize['2xl'],
+    fontSize: {
+      sm: theme.fontSize['2xl'],
+      md: theme.fontSize['3xl'],
+      lg: theme.fontSize['5xl'],
+    },
   },
   primaryColor: {
     color: theme.colors.primary,

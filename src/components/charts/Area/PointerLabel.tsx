@@ -29,15 +29,32 @@ const styles = StyleSheet.create(theme => ({
   },
   tooltip: {
     backgroundColor: theme.colors.shape,
-    paddingHorizontal: theme.spacing[3],
-    paddingVertical: theme.spacing[1.5],
-    borderRadius: theme.shapes.lg,
+    paddingHorizontal: {
+      sm: theme.spacing[3],
+      md: theme.spacing[4],
+      lg: theme.spacing[6],
+    },
+    paddingVertical: {
+      sm: theme.spacing[1.5],
+      md: theme.spacing[2],
+      lg: theme.spacing[3],
+    },
+    borderRadius: {
+      sm: theme.shapes.md,
+      lg: theme.shapes.lg,
+    },
     borderWidth: 1,
     borderColor: theme.colors.white,
   },
   text: {
     fontFamily: theme.fonts.inter.bold,
+
     color: theme.colors.white,
     textAlign: 'center',
+    fontSize: {
+      sm: theme.fontSize.md,
+      md: theme.fontSize.lg,
+      lg: theme.fontSize['2xl'],
+    },
   },
 }));

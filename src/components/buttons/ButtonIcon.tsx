@@ -23,19 +23,35 @@ export function ButtonIcon({ iconName, size, color, style, ...rest }: ButtonIcon
 
 const styles = StyleSheet.create(theme => ({
   container: {
-    padding: theme.spacing[1],
+    padding: {
+      sm: theme.spacing[1],
+      md: theme.spacing[1.5],
+      lg: theme.spacing[2.5],
+    },
   },
   icon: {
     variants: {
       size: {
         sm: {
-          fontSize: theme.fontSize.xl,
+          fontSize: {
+            sm: theme.fontSize.xl,
+            md: theme.fontSize['2xl'],
+            lg: theme.fontSize['4xl'],
+          },
         },
         default: {
-          fontSize: theme.fontSize['2xl'],
+          fontSize: {
+            sm: theme.fontSize['2xl'],
+            md: theme.fontSize['3xl'],
+            lg: theme.fontSize['5xl'],
+          },
         },
         lg: {
-          fontSize: theme.fontSize['3xl'],
+          fontSize: {
+            sm: theme.fontSize['3xl'],
+            md: theme.fontSize['4xl'],
+            lg: theme.fontSize['6xl'],
+          },
         },
       },
       color: {

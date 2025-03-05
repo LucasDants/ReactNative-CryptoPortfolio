@@ -51,14 +51,22 @@ export const TransactionListItem = memo(TransactionListItemComponent, (prev, nex
 
 const styles = StyleSheet.create(theme => ({
   container: {
-    marginHorizontal: theme.spacing[5],
+    marginHorizontal: {
+      sm: theme.spacing[4],
+      md: theme.spacing[5],
+      lg: theme.spacing[7],
+    },
   },
   textType: {
     textTransform: 'capitalize',
   },
   iconWrapper: {
-    padding: theme.spacing[1],
-    borderRadius: 120,
+    padding: {
+      sm: theme.spacing[1],
+      md: theme.spacing[1.5],
+      lg: theme.spacing[2],
+    },
+    borderRadius: 180,
     variants: {
       type: {
         buy: {
@@ -71,7 +79,11 @@ const styles = StyleSheet.create(theme => ({
     },
   },
   icon: {
-    fontSize: theme.fontSize['3xl'],
+    fontSize: {
+      sm: theme.fontSize['3xl'],
+      md: theme.fontSize['4xl'],
+      lg: theme.fontSize['6xl'],
+    },
   },
 }));
 

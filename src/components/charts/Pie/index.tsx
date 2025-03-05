@@ -45,14 +45,29 @@ export function PieChart({ data = [], title }: PieChartProps) {
 
 const styles = StyleSheet.create(theme => ({
   container: {
-    padding: theme.spacing[4],
-    borderRadius: theme.shapes.md,
+    padding: {
+      sm: theme.spacing[4],
+      md: theme.spacing[5],
+      lg: theme.spacing[7],
+    },
+    borderRadius: {
+      sm: theme.shapes.md,
+      lg: theme.shapes.lg,
+    },
     backgroundColor: theme.colors.shape,
-    gap: theme.spacing[3],
+    gap: {
+      sm: theme.spacing[3],
+      md: theme.spacing[4],
+      lg: theme.spacing[6],
+    },
   },
   title: {
     color: theme.colors.white,
-    fontSize: theme.fontSize.lg,
+    fontSize: {
+      sm: theme.fontSize.lg,
+      md: theme.fontSize.xl,
+      lg: theme.fontSize['3xl'],
+    },
     fontFamily: theme.fonts.inter.bold,
   },
   chartContent: {

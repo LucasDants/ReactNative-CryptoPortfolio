@@ -30,7 +30,15 @@ export function CoinImage({ coin, style, ...rest }: CoinImageProps) {
 
 const styles = StyleSheet.create({
   image: {
-    height: 40,
-    width: 40,
+    height: {
+      sm: 40,
+      md: 46,
+      lg: 60,
+    },
+    width: {
+      sm: 40,
+      md: 46,
+      lg: 60,
+    },
   },
 });

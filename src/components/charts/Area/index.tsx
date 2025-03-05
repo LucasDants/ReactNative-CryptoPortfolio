@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 import React, { useCallback } from 'react';
 import { View } from 'react-native';
 import { LineChart } from 'react-native-gifted-charts';
+import { StyleSheet } from 'react-native-unistyles';
 import { Results } from 'realm';
 import { AreaChartPointerLabel } from './PointerLabel';
 
@@ -52,7 +53,7 @@ export function AreaChart({ transactions, color = '#5DD44E', onPointerShow }: Pr
   const PointerLabelComponent = useCallback((items: { value: number }[]) => <AreaChartPointerLabel data={items} />, []);
 
   return (
-    <View style={{}}>
+    <View>
       <LineChart
         areaChart
         data={data}
@@ -61,7 +62,7 @@ export function AreaChart({ transactions, color = '#5DD44E', onPointerShow }: Pr
         startOpacity={0.4}
         endOpacity={0.01}
         isAnimated
-        thickness={5}
+        thickness={styles.thickness.height}
         color={color}
         disableScroll
         animationDuration={1200}
@@ -76,10 +77,10 @@ export function AreaChart({ transactions, color = '#5DD44E', onPointerShow }: Pr
 
         pointerConfig={{
           pointerColor: color,
-          radius: 6,
+          radius: styles.radius.height,
           showPointerStrip: false,
-          pointerLabelWidth: 120,
-          pointerLabelHeight: 90,
+          pointerLabelWidth: styles.pointerLabel.width,
+          pointerLabelHeight: styles.pointerLabel.height,
           activatePointersOnLongPress: true,
           autoAdjustPointerLabelPosition: true,
           pointerLabelComponent: PointerLabelComponent,
@@ -94,3 +95,33 @@ export function AreaChart({ transactions, color = '#5DD44E', onPointerShow }: Pr
     </View>
   );
 }
+
+
+const styles = StyleSheet.create({
+  thickness: {
+    height: {
+      sm: 5,
+      md: 6,
+      lg: 9,
+    },
+  },
+  radius: {
+    height: {
+      sm: 6,
+      md: 7,
+      lg: 10,
+    },
+  },
+  pointerLabel: {
+    height: {
+      sm: 90,
+      md: 110,
+      lg: 170,
+    },
+    width: {
+      sm: 120,
+      md: 140,
+      lg: 200,
+    },
+  },
+});

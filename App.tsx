@@ -10,21 +10,6 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Toast from 'react-native-toast-message';
 import { RealmProvider } from './src/database';
 
-
-// TODO:
-//! Add Toasts
-//! Navigate back when form
-//! Confirmation before delete and navigate back
-//! If all the transactions for one coin were deleted navigate back from screen
-//! Start empty home with a better UI
-//! Chart press tooltip disable scroll
-//! Add Icon
-//! Add Splash Screen
-// size breakpoints
-// Add App Font
-// Check Performance
-// Add Documentation
-
 function App() {
   return (
     <>

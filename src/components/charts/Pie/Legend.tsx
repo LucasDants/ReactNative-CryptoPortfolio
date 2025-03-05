@@ -32,17 +32,29 @@ const styles = StyleSheet.create(theme => ({
   container: {
     flexWrap: 'wrap',
     flexDirection: 'row',
-    rowGap: theme.spacing[3],
+    rowGap: {
+      sm: theme.spacing[3],
+      md: theme.spacing[4],
+      lg: theme.spacing[6],
+    },
   },
   item: {
     flexDirection: 'row',
     alignItems: 'center',
     width: '50%',
-    gap: theme.spacing[3],
+    gap: {
+      sm: theme.spacing[3],
+      md: theme.spacing[4],
+      lg: theme.spacing[6],
+    },
   },
   text: {
     color: theme.colors.white,
-    fontSize: theme.fontSize.sm,
+    fontSize: {
+      sm: theme.fontSize.sm,
+      md: theme.fontSize.md,
+      lg: theme.fontSize.xl,
+    },
     fontFamily: theme.fonts.inter.regular,
   },
 }));

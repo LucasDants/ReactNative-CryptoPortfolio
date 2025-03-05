@@ -36,7 +36,10 @@ const styles = StyleSheet.create(theme => ({
     flex: 1,
     borderStyle: 'solid',
     borderColor: theme.colors.shape,
-    borderRadius: theme.shapes.md,
+    borderRadius: {
+      sm: theme.shapes.md,
+      lg: theme.shapes.lg,
+    },
     variants: {
       active: {
         true: {
@@ -45,7 +48,10 @@ const styles = StyleSheet.create(theme => ({
         },
         false: {
           borderColor: theme.colors.shape,
-          borderWidth: 1,
+          borderWidth: {
+            sm: 1,
+            lg: 2,
+          },
         },
       },
       type: {
@@ -75,18 +81,33 @@ const styles = StyleSheet.create(theme => ({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: theme.spacing[4],
-    gap: theme.spacing[2],
+    padding: {
+      sm: theme.spacing[4],
+      md: theme.spacing[5],
+      lg: theme.spacing[7],
+    },
+    gap: {
+      sm: theme.spacing[2],
+      md: theme.spacing[3],
+      lg: theme.spacing[5],
+    },
   },
   icon: {
-    fontSize: theme.fontSize['2xl'],
-
     color: theme.colors.white,
+    fontSize: {
+      sm: theme.fontSize['2xl'],
+      md: theme.fontSize['3xl'],
+      lg: theme.fontSize['5xl'],
+    },
   },
   title: {
-    fontSize: theme.fontSize.lg,
     color: theme.colors.white,
     fontFamily: theme.fonts.inter.medium,
+    fontSize: {
+      sm: theme.fontSize.lg,
+      md: theme.fontSize.xl,
+      lg: theme.fontSize['3xl'],
+    },
   },
 }));
 

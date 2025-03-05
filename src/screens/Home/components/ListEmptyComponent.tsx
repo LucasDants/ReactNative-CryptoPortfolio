@@ -19,22 +19,42 @@ const styles = StyleSheet.create(theme => ({
   container: {
     flex: 1,
     alignItems: 'flex-end',
-    paddingHorizontal: theme.spacing[5],
+    paddingHorizontal: {
+      sm: theme.spacing[4],
+      md: theme.spacing[5],
+      lg: theme.spacing[7],
+    },
   },
   textIcon: {
     color: theme.colors.primary,
-    fontSize: theme.fontSize['4xl'],
+    fontSize: {
+      sm: theme.fontSize['4xl'],
+      md: theme.fontSize['5xl'],
+      lg: theme.fontSize['7xl'],
+    },
   },
   sadIcon: {
-    fontSize: theme.fontSize['7xl'],
+    fontSize: {
+      sm: 60,
+      md: 65,
+      lg: 75,
+    },
     alignSelf: 'center',
-    marginBottom: theme.spacing[2],
+    marginBottom: {
+      sm: theme.spacing[2],
+      md: theme.spacing[3],
+      lg: theme.spacing[5],
+    },
   },
   text: {
-    color: theme.colors.white,
-    fontSize: theme.fontSize.lg,
     textAlign: 'center',
+    color: theme.colors.white,
     fontFamily: theme.fonts.inter.medium,
+    fontSize: {
+      sm: theme.fontSize.lg,
+      md: theme.fontSize.xl,
+      lg: theme.fontSize['3xl'],
+    },
   },
 }));
 

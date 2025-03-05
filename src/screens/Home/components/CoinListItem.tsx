@@ -37,7 +37,11 @@ export const CoinListItem = memo(CoinListItemComponent, (prev, next) => prev.coi
 
 const styles = StyleSheet.create(theme => ({
   container: {
-    marginHorizontal: theme.spacing[5],
+    marginHorizontal: {
+      sm: theme.spacing[4],
+      md: theme.spacing[5],
+      lg: theme.spacing[7],
+    },
   },
 }));
 

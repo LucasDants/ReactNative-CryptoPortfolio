@@ -10,6 +10,10 @@ export function HeaderEmptySpace() {
 
 const styles = StyleSheet.create(theme => ({
   container: {
-    width: theme.fontSize['3xl'],
+    width: {
+      sm: theme.fontSize['3xl'],
+      md: theme.fontSize['4xl'],
+      lg: theme.fontSize['6xl'],
+    },
   },
 }));

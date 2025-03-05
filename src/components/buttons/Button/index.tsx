@@ -28,8 +28,15 @@ const styles = StyleSheet.create(theme => ({
   button: {
     backgroundColor: theme.colors.primary,
     alignItems: 'center',
-    paddingVertical: theme.spacing[4],
-    borderRadius: theme.shapes.md,
+    paddingVertical: {
+      sm: theme.spacing[4],
+      md: theme.spacing[5],
+      lg: theme.spacing[7],
+    },
+    borderRadius: {
+      sm: theme.shapes.md,
+      lg: theme.shapes.lg,
+    },
 
     variants: {
       disabled: {
@@ -47,8 +54,12 @@ const styles = StyleSheet.create(theme => ({
   },
   text: {
     color: theme.colors.white,
-    fontSize: theme.fontSize.lg,
     fontFamily: theme.fonts.inter.semibold,
+    fontSize: {
+      sm: theme.fontSize.lg,
+      md: theme.fontSize.xl,
+      lg: theme.fontSize['3xl'],
+    },
   },
 
 }));

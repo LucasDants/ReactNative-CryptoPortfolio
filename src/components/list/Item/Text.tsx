@@ -18,8 +18,13 @@ export function ListItemText({ color, typography, style, ...rest }: ItemTextProp
 const styles = StyleSheet.create((theme) => ({
   text: {
     color: theme.colors.white,
-    fontSize: theme.fontSize.lg,
     fontFamily: theme.fonts.inter.semibold,
+
+    fontSize: {
+      sm: theme.fontSize.lg,
+      md: theme.fontSize.xl,
+      lg: theme.fontSize['3xl'],
+    },
 
     variants: {
       color: {
@@ -30,7 +35,11 @@ const styles = StyleSheet.create((theme) => ({
 
       typography: {
         subtitle: {
-          fontSize: theme.fontSize.sm,
+          fontSize: {
+            sm: theme.fontSize.sm,
+            md: theme.fontSize.md,
+            lg: theme.fontSize.xl,
+          },
           fontFamily: theme.fonts.inter.regular,
         },
       },

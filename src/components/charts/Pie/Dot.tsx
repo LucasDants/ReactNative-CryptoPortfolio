@@ -17,8 +17,20 @@ export function PieLegendDot({ color }: Props) {
 
 const styles = StyleSheet.create({
   container: {
-    height: 10,
-    width: 10,
-    borderRadius: 5,
+    height: {
+      sm: 10,
+      md: 12,
+      lg: 18,
+    },
+    width: {
+      sm: 10,
+      md: 12,
+      lg: 18,
+    },
+    borderRadius: {
+      sm: 5,
+      md: 6,
+      lg: 9,
+    },
   },
 });

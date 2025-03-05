@@ -47,15 +47,31 @@ export function CoinSelectButton({ coin, style, ...rest }: Props) {
 const styles = StyleSheet.create(theme => ({
   emptyText: {
     color: theme.colors.white,
-    fontSize: theme.fontSize.lg,
     fontFamily: theme.fonts.inter.regular,
+    fontSize: {
+      sm: theme.fontSize.lg,
+      md: theme.fontSize.xl,
+      lg: theme.fontSize['3xl'],
+    },
   },
   iconWrapper: {
-    width: 40,
-    height: 40,
+    width: {
+      sm: 40,
+      md: 46,
+      lg: 60,
+    },
+    height: {
+      sm: 40,
+      md: 46,
+      lg: 60,
+    },
     justifyContent: 'center',
   },
   icon: {
-    fontSize: theme.fontSize['2xl'],
+    fontSize: {
+      sm: theme.fontSize['2xl'],
+      md: theme.fontSize['3xl'],
+      lg: theme.fontSize['5xl'],
+    },
   },
 }));

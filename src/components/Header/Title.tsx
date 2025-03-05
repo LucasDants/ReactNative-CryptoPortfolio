@@ -13,8 +13,12 @@ export function HeaderTitle({ style, ...rest }: HeaderTitleProps) {
 const styles = StyleSheet.create((theme) => ({
   text: {
     color: theme.colors.white,
-    fontSize: theme.fontSize.xl,
     fontFamily: theme.fonts.inter.semibold,
+    fontSize: {
+      sm: theme.fontSize.xl,
+      md: theme.fontSize['2xl'],
+      lg: theme.fontSize['4xl'],
+    },
   },
 }));
 

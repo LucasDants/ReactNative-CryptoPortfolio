@@ -12,7 +12,11 @@ export function Icon({ style, ...rest }: IconProps) {
 
 const styles = StyleSheet.create(theme => ({
   icon: {
-    fontSize: theme.fontSize.sm,
+    fontSize: {
+      sm: theme.fontSize.sm,
+      md: theme.fontSize.md,
+      lg: theme.fontSize.xl,
+    },
     color: theme.colors.white,
   },
 }));

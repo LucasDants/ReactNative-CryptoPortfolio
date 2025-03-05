@@ -13,7 +13,11 @@ export function ListHeaderTitle({ style, ...rest }: ListHeaderTitleProps) {
 const styles = StyleSheet.create((theme) => ({
   text: {
     color: theme.colors.white,
-    fontSize: theme.fontSize.xl,
+    fontSize: {
+      sm: theme.fontSize.xl,
+      md: theme.fontSize['2xl'],
+      lg: theme.fontSize['4xl'],
+    },
     fontFamily: theme.fonts.inter.semibold,
   },
 }));

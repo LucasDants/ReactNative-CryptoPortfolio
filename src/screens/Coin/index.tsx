@@ -103,7 +103,7 @@ export default function CoinScreen({ navigation, route }: CoinScreenProps) {
       }
       showsVerticalScrollIndicator={false}
       renderItem={renderItem}
-      keyExtractor={item => String(item._id)}
+      keyExtractor={item => item._id.toString()}
       contentContainerStyle={styles.contentContainerStyle}
       ref={flatListRef}
     />
@@ -115,26 +115,62 @@ const styles = StyleSheet.create(((theme, rt) => ({
   container: {
     flex: 1,
     backgroundColor: theme.colors.background,
-    paddingTop: rt.insets.top + theme.spacing[3],
+    paddingTop: {
+      sm: rt.insets.top + theme.spacing[3],
+      md: rt.insets.top + theme.spacing[4],
+      lg: rt.insets.top + theme.spacing[6],
+    },
   },
   headerWrapper: {
-    paddingHorizontal: theme.spacing[4],
+    paddingHorizontal: {
+      sm: theme.spacing[4],
+      md: theme.spacing[5],
+      lg: theme.spacing[7],
+    },
   },
   balanceCard: {
     alignItems: 'center',
-    gap: theme.spacing[3],
+    gap: {
+      sm: theme.spacing[3],
+      md: theme.spacing[4],
+      lg: theme.spacing[6],
+    },
   },
   coinBalance: {
-    fontSize: theme.fontSize.lg,
-    lineHeight: theme.fontSize['2xl'],
+    fontSize: {
+      sm: theme.fontSize.lg,
+      md: theme.fontSize.xl,
+      lg: theme.fontSize['3xl'],
+    },
+    lineHeight: {
+      sm: theme.fontSize['2xl'],
+      md: theme.fontSize['3xl'],
+      lg: theme.fontSize['5xl'],
+    },
   },
   coinImage: { height: 52, width: 52 },
   headerContentWrapper: {
-    paddingHorizontal: theme.spacing[4],
-    gap: theme.spacing[3],
+    paddingHorizontal: {
+      sm: theme.spacing[4],
+      md: theme.spacing[5],
+      lg: theme.spacing[7],
+    },
+    gap: {
+      sm: theme.spacing[3],
+      md: theme.spacing[4],
+      lg: theme.spacing[6],
+    },
   },
   contentContainerStyle: {
-    gap: theme.spacing[3],
-    paddingBottom: rt.insets.bottom + theme.spacing[3],
+    gap: {
+      sm: theme.spacing[3],
+      md: theme.spacing[4],
+      lg: theme.spacing[6],
+    },
+    paddingBottom: {
+      sm: rt.insets.bottom + theme.spacing[3],
+      md: rt.insets.bottom + theme.spacing[4],
+      lg: rt.insets.bottom + theme.spacing[6],
+    },
   },
 })));
