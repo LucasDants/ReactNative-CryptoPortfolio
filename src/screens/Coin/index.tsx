@@ -8,6 +8,7 @@ import { TotalBalanceCard } from '@/components/TotalBalanceCard';
 import { ButtonIcon } from '@/components/buttons/ButtonIcon';
 import { AreaChart } from '@/components/charts/Area';
 import { ListHeader } from '@/components/list/Header';
+import { LIST_ITEM_HEIGHT } from '@/components/list/Item/Root';
 import { CRYPTOCURRENCIES } from '@/config/cryptocurrencies';
 import { useQuery } from '@/database';
 import { Transaction } from '@/database/schemas/transaction';
@@ -101,6 +102,9 @@ export default function CoinScreen({ navigation, route }: CoinScreenProps) {
           </View>
         </>
       }
+      getItemLayout={(_, index) => (
+        { length: LIST_ITEM_HEIGHT, offset: LIST_ITEM_HEIGHT * index, index }
+      )}
       showsVerticalScrollIndicator={false}
       renderItem={renderItem}
       keyExtractor={item => item._id.toString()}

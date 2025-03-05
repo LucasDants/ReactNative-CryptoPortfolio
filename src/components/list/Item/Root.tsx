@@ -10,16 +10,20 @@ export function ListItemRoot({ style, ...rest }: Props) {
   );
 }
 
-
 const styles = StyleSheet.create(theme => ({
   container: {
+    height: {
+      sm: 72,
+      md: 86,
+      lg: 116,
+    },
     flexDirection: 'row',
     backgroundColor: theme.colors.shape,
     borderRadius: {
       sm: theme.shapes.md,
       lg: theme.shapes.lg,
     },
-    padding: {
+    paddingHorizontal: {
       sm: theme.spacing[4],
       md: theme.spacing[5],
       lg: theme.spacing[7],
@@ -33,6 +37,8 @@ const styles = StyleSheet.create(theme => ({
     },
   },
 }));
+
+export const LIST_ITEM_HEIGHT = styles.container.height;
 
 
 

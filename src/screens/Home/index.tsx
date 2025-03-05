@@ -10,6 +10,7 @@ import { HomeScreenProps } from '@/@types/@react-navigation/stack';
 import { ButtonIcon } from '@/components/buttons/ButtonIcon';
 import { Header } from '@/components/Header';
 import { ListHeader } from '@/components/list/Header';
+import { LIST_ITEM_HEIGHT } from '@/components/list/Item/Root';
 import { TotalBalanceCard } from '@/components/TotalBalanceCard';
 import { CRYPTOCURRENCIES } from '@/config/cryptocurrencies';
 import { useQuery } from '@/database/index';
@@ -107,6 +108,9 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
           </View>
         </>
       }
+      getItemLayout={(_, index) => (
+        { length: LIST_ITEM_HEIGHT, offset: LIST_ITEM_HEIGHT * index, index }
+      )}
       showsVerticalScrollIndicator={false}
       renderItem={renderItem}
       keyExtractor={item => String(item.coin)}
