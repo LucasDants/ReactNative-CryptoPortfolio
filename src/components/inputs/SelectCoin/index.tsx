@@ -66,7 +66,7 @@ export function SelectCoin({ coin, setSelectedCoin }: Props) {
         maxDynamicContentSize={Dimensions.get('window').height * 0.8}
         style={styles.bottomSheetStyle}
         backdropComponent={BackdropComponent}>
-        <ListHeader.Title style={styles.title}>Select your wallet</ListHeader.Title >
+        <ListHeader.Title style={styles.title}>Select your coin</ListHeader.Title >
         <BottomSheetFlatList
           data={Object.values(CRYPTOCURRENCIES)}
           keyExtractor={item => item.coin}

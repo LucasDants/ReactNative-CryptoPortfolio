@@ -15,7 +15,7 @@ export function PieLegendDot({ color }: Props) {
   );
 }
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create(theme => ({
   container: {
     height: {
       sm: 10,
@@ -32,5 +32,7 @@ const styles = StyleSheet.create({
       md: 6,
       lg: 9,
     },
+    borderWidth: 1,
+    borderColor: theme.colors.white + '80',
   },
-});
+}));

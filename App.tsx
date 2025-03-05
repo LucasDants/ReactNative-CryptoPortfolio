@@ -1,6 +1,7 @@
 import './src/theme/unistyles';
 //
 
+import { toastConfig } from '@/config/toast';
 import { Routes } from '@/routes/index.routes';
 import { theme } from '@/theme';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
@@ -21,7 +22,7 @@ function App() {
           </BottomSheetModalProvider>
         </RealmProvider>
       </GestureHandlerRootView>
-      <Toast />
+      <Toast config={toastConfig} />
     </>
   );
 }

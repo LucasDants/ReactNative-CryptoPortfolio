@@ -1,5 +1,6 @@
 
 import Toast, { ToastType } from 'react-native-toast-message';
+import { UnistylesRuntime } from 'react-native-unistyles';
 
 type Props = {
   type?: ToastType
@@ -12,5 +13,7 @@ export function showToast({ type = 'success', title, description}: Props) {
       type: type,
       text1: title,
       text2: description,
+      topOffset: UnistylesRuntime.insets.top + 12,
+      autoHide: false,
     });
 }
