@@ -58,6 +58,9 @@ I like to use [react-native-bottom-sheet](https://gorhom.dev/react-native-bottom
 ### Date Picker
 I used the [react-native-date-picker](https://github.com/henninghall/react-native-date-picker) to provide a platform experience while selecting the date.
 
+## List
+I stayed with the default flatList with some optimizations techniques, but we also can use [react-native-flashlist][https://shopify.github.io/flash-list/] that has more performance than the default flatList. 
+
 # 🚀 Run Project
 >**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
 ## Step 1: Start the Metro Server

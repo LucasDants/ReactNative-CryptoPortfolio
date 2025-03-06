@@ -71,6 +71,9 @@ export default function CoinScreen({ navigation, route }: CoinScreenProps) {
     flatListRef.current?.setNativeProps({ scrollEnabled: !isVisible });
   }, []);
 
+  const getItemLayout = useCallback((_: unknown, index: number) => (
+    { length: LIST_ITEM_HEIGHT, offset: LIST_ITEM_HEIGHT * index, index }
+  ), []);
 
   return (
     <FlatList
@@ -102,9 +105,7 @@ export default function CoinScreen({ navigation, route }: CoinScreenProps) {
           </View>
         </>
       }
-      getItemLayout={(_, index) => (
-        { length: LIST_ITEM_HEIGHT, offset: LIST_ITEM_HEIGHT * index, index }
-      )}
+      getItemLayout={getItemLayout}
       showsVerticalScrollIndicator={false}
       renderItem={renderItem}
       keyExtractor={item => item._id.toString()}
@@ -119,10 +120,22 @@ const styles = StyleSheet.create(((theme, rt) => ({
   container: {
     flex: 1,
     backgroundColor: theme.colors.background,
+  },
+  contentContainerStyle: {
+    gap: {
+      sm: theme.spacing[3],
+      md: theme.spacing[4],
+      lg: theme.spacing[6],
+    },
     paddingTop: {
       sm: rt.insets.top + theme.spacing[3],
       md: rt.insets.top + theme.spacing[4],
       lg: rt.insets.top + theme.spacing[6],
+    },
+    paddingBottom: {
+      sm: rt.insets.bottom + theme.spacing[3],
+      md: rt.insets.bottom + theme.spacing[4],
+      lg: rt.insets.bottom + theme.spacing[6],
     },
   },
   headerWrapper: {
@@ -152,7 +165,18 @@ const styles = StyleSheet.create(((theme, rt) => ({
       lg: theme.fontSize['5xl'],
     },
   },
-  coinImage: { height: 52, width: 52 },
+  coinImage: {
+    height: {
+      sm: 52,
+      md: 58,
+      lg: 70,
+    },
+    width: {
+      sm: 52,
+      md: 58,
+      lg: 70,
+    },
+  },
   headerContentWrapper: {
     paddingHorizontal: {
       sm: theme.spacing[4],
@@ -163,18 +187,6 @@ const styles = StyleSheet.create(((theme, rt) => ({
       sm: theme.spacing[3],
       md: theme.spacing[4],
       lg: theme.spacing[6],
-    },
-  },
-  contentContainerStyle: {
-    gap: {
-      sm: theme.spacing[3],
-      md: theme.spacing[4],
-      lg: theme.spacing[6],
-    },
-    paddingBottom: {
-      sm: rt.insets.bottom + theme.spacing[3],
-      md: rt.insets.bottom + theme.spacing[4],
-      lg: rt.insets.bottom + theme.spacing[6],
     },
   },
 })));

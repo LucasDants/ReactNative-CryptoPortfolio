@@ -86,6 +86,10 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
     flatListRef.current?.setNativeProps({ scrollEnabled: !isVisible });
   }, []);
 
+  const getItemLayout = useCallback((_: unknown, index: number) => (
+    { length: LIST_ITEM_HEIGHT, offset: LIST_ITEM_HEIGHT * index, index }
+  ), []);
+
   return (
     <FlatList
       data={data}
@@ -108,9 +112,7 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
           </View>
         </>
       }
-      getItemLayout={(_, index) => (
-        { length: LIST_ITEM_HEIGHT, offset: LIST_ITEM_HEIGHT * index, index }
-      )}
+      getItemLayout={getItemLayout}
       showsVerticalScrollIndicator={false}
       renderItem={renderItem}
       keyExtractor={item => String(item.coin)}
@@ -126,17 +128,17 @@ const styles = StyleSheet.create(((theme, rt) => ({
   container: {
     flex: 1,
     backgroundColor: theme.colors.background,
-    paddingTop: {
-      sm: rt.insets.top + theme.spacing[5],
-      md: rt.insets.top + theme.spacing[6],
-      lg: rt.insets.top + theme.spacing[8],
-    },
   },
   contentContainerStyle: {
     gap: {
       sm: theme.spacing[3],
       md: theme.spacing[4],
       lg: theme.spacing[6],
+    },
+    paddingTop: {
+      sm: rt.insets.top + theme.spacing[5],
+      md: rt.insets.top + theme.spacing[6],
+      lg: rt.insets.top + theme.spacing[8],
     },
     paddingBottom: {
       sm: rt.insets.bottom + theme.spacing[3],
