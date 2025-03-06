@@ -128,6 +128,10 @@ I used the breakpoints from react-native-unistyles to achieve the responsiveness
 
 ## 🎥 Videos
 
+https://github.com/user-attachments/assets/7c93ac90-dc94-4a61-b51c-b54ac281116e
+
+https://github.com/user-attachments/assets/cda3fc66-53e0-4aca-aa0e-bae34cb46bc3
+
 ## 📷 Images
 ![image](./documentation/images/HomeEmpty.png)
 ![image](./documentation/images/Home.png)
