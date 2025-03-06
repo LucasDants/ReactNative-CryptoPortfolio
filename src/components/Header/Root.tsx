@@ -11,10 +11,10 @@ export function HeaderRoot({ style, ...rest }: ViewProps) {
 const styles = StyleSheet.create(theme => ({
   container: {
     flexDirection: 'row',
-    marginBottom: {
-      sm: theme.spacing[4],
-      md: theme.spacing[5],
-      lg: theme.spacing[7],
+    paddingBottom: {
+      sm: theme.spacing[2],
+      md: theme.spacing[3],
+      lg: theme.spacing[5],
     },
     justifyContent: 'space-between',
     alignItems: 'center',

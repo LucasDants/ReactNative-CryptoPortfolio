@@ -240,6 +240,11 @@ const styles = StyleSheet.create(((theme, rt) => ({
   },
   form: {
     flex: 1,
+    paddingTop: {
+      sm: theme.spacing[2],
+      md: theme.spacing[3],
+      lg: theme.spacing[5],
+    },
     gap: {
       sm: theme.spacing[3],
       md: theme.spacing[4],

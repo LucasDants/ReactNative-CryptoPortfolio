@@ -12,6 +12,7 @@ import { LIST_ITEM_HEIGHT } from '@/components/list/Item/Root';
 import { CRYPTOCURRENCIES } from '@/config/cryptocurrencies';
 import { useQuery } from '@/database';
 import { Transaction } from '@/database/schemas/transaction';
+import { formatNumberToMaxDisplay } from '@/utils/formatNumberToMaxDisplay';
 import { FlatList, ListRenderItem, Text, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 import { TransactionListItem } from './components/TransactionListItem';
@@ -20,6 +21,7 @@ export default function CoinScreen({ navigation, route }: CoinScreenProps) {
   const { coin } = route.params;
 
   const coinColor = CRYPTOCURRENCIES[coin].color;
+  const coinDecimals = CRYPTOCURRENCIES[coin].decimals;
 
   const flatListRef = useRef<FlatList>(null);
 
@@ -76,42 +78,44 @@ export default function CoinScreen({ navigation, route }: CoinScreenProps) {
   ), []);
 
   return (
-    <FlatList
-      data={transactionsQuery}
-      style={styles.container}
-      ListHeaderComponent={
-        <>
-          <View style={styles.headerWrapper}>
-            <Header.Root>
-              <Header.Button iconName="chevron-left" onPress={() => navigation.goBack()} />
-              <Header.Title>{coin} Transactions</Header.Title>
-              <Header.Empty />
-            </Header.Root>
-          </View>
-          <View style={styles.balanceCard}>
-            <CoinImage style={styles.coinImage} coin={coin} />
-            <TotalBalanceCard totalFiatAmount={totalFiatAmount} >
-              <Text style={[styles.coinBalance, { color: coinColor }]}>{coin} {totalCoinAmount}</Text>
-            </TotalBalanceCard>
-          </View>
-          <AreaChart transactions={transactionsQuery} color={CRYPTOCURRENCIES[coin].color} onPointerShow={toggleFlatListScroll} />
-          <View style={styles.headerContentWrapper}>
-            <ListHeader.Root>
-              <ListHeader.Title>Transactions</ListHeader.Title>
-              <ListHeader.Actions>
-                <ButtonIcon iconName="plus" size="sm" onPress={() => navigation.navigate('TransactionForm', { coin })} />
-              </ListHeader.Actions>
-            </ListHeader.Root>
-          </View>
-        </>
-      }
-      getItemLayout={getItemLayout}
-      showsVerticalScrollIndicator={false}
-      renderItem={renderItem}
-      keyExtractor={item => item._id.toString()}
-      contentContainerStyle={styles.contentContainerStyle}
-      ref={flatListRef}
-    />
+    <View style={styles.container}>
+      <View style={styles.headerWrapper}>
+        <Header.Root>
+          <Header.Button iconName="chevron-left" onPress={() => navigation.goBack()} />
+          <Header.Title>{coin} Transactions</Header.Title>
+          <Header.Empty />
+        </Header.Root>
+      </View>
+      <FlatList
+        data={transactionsQuery}
+        style={styles.listContainer}
+        ListHeaderComponent={
+          <>
+            <View style={styles.balanceCard}>
+              <CoinImage style={styles.coinImage} coin={coin} />
+              <TotalBalanceCard totalFiatAmount={totalFiatAmount} >
+                <Text style={[styles.coinBalance, { color: coinColor }]}>{coin} {formatNumberToMaxDisplay(totalCoinAmount, coinDecimals)}</Text>
+              </TotalBalanceCard>
+            </View>
+            <AreaChart transactions={transactionsQuery} color={coinColor} onPointerShow={toggleFlatListScroll} />
+            <View style={styles.headerContentWrapper}>
+              <ListHeader.Root>
+                <ListHeader.Title>Transactions</ListHeader.Title>
+                <ListHeader.Actions>
+                  <ButtonIcon iconName="plus" size="sm" onPress={() => navigation.navigate('TransactionForm', { coin })} />
+                </ListHeader.Actions>
+              </ListHeader.Root>
+            </View>
+          </>
+        }
+        getItemLayout={getItemLayout}
+        showsVerticalScrollIndicator={false}
+        renderItem={renderItem}
+        keyExtractor={item => item._id.toString()}
+        contentContainerStyle={styles.contentContainerStyle}
+        ref={flatListRef}
+      />
+    </View>
   );
 }
 
@@ -120,6 +124,15 @@ const styles = StyleSheet.create(((theme, rt) => ({
   container: {
     flex: 1,
     backgroundColor: theme.colors.background,
+
+    paddingTop: {
+      sm: rt.insets.top + theme.spacing[3],
+      md: rt.insets.top + theme.spacing[4],
+      lg: rt.insets.top + theme.spacing[6],
+    },
+  },
+  listContainer: {
+    flex: 1,
   },
   contentContainerStyle: {
     gap: {
@@ -127,11 +140,7 @@ const styles = StyleSheet.create(((theme, rt) => ({
       md: theme.spacing[4],
       lg: theme.spacing[6],
     },
-    paddingTop: {
-      sm: rt.insets.top + theme.spacing[3],
-      md: rt.insets.top + theme.spacing[4],
-      lg: rt.insets.top + theme.spacing[6],
-    },
+
     paddingBottom: {
       sm: rt.insets.bottom + theme.spacing[3],
       md: rt.insets.bottom + theme.spacing[4],
