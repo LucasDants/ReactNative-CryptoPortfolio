@@ -1,6 +1,6 @@
 import { Transaction } from '@/database/schemas/transaction';
 import dayjs from 'dayjs';
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { View } from 'react-native';
 import { LineChart } from 'react-native-gifted-charts';
 import { StyleSheet } from 'react-native-unistyles';
@@ -14,8 +14,7 @@ type Props = {
 }
 
 export function AreaChart({ transactions, color = '#5DD44E', onPointerShow }: Props) {
-
-  function getTotalBalancePerDay() {
+  const data = useMemo(() => {
     const dailyBalances: Record<string, number> = {};
 
     if (transactions.length === 0) {
@@ -46,9 +45,7 @@ export function AreaChart({ transactions, color = '#5DD44E', onPointerShow }: Pr
     });
 
     return [{ value: 0 }, ...result];
-  }
-
-  const data = getTotalBalancePerDay();
+  }, [transactions]);
 
   const PointerLabelComponent = useCallback((items: { value: number }[]) => <AreaChartPointerLabel data={items} />, []);
 

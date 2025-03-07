@@ -1,21 +1,21 @@
 import React, { useCallback, useMemo, useRef } from 'react';
 import { FlatList, ListRenderItem, View } from 'react-native';
 
-import { AreaChart } from '@/components/charts/Area';
-import { PieChart } from '@/components/charts/Pie/index';
-import { StyleSheet } from 'react-native-unistyles';
-
 import { CoinAvailable } from '@/@types';
 import { HomeScreenProps } from '@/@types/@react-navigation/stack';
 import { ButtonIcon } from '@/components/buttons/ButtonIcon';
+import { AreaChart } from '@/components/charts/Area';
+import { PieChart } from '@/components/charts/Pie/index';
 import { Header } from '@/components/Header';
 import { ListHeader } from '@/components/list/Header';
 import { LIST_ITEM_HEIGHT } from '@/components/list/Item/Root';
+import { LIST_ITEM_SEPARATOR_HEIGHT, ListSeparatorRow } from '@/components/list/SeparatorRow';
 import { TotalBalanceCard } from '@/components/TotalBalanceCard';
 import { CRYPTOCURRENCIES } from '@/config/cryptocurrencies';
 import { useQuery } from '@/database/index';
 import { Transaction } from '@/database/schemas/transaction';
 import { getGreeting } from '@/utils/getGreenting';
+import { StyleSheet } from 'react-native-unistyles';
 import { CoinListItem } from './components/CoinListItem';
 import { HomeEmptyList } from './components/ListEmptyComponent';
 
@@ -30,6 +30,7 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
   const { data, totalAmount } = useMemo(() => {
     const amountPerCoin = {} as Record<CoinAvailable, { fiatAmount: number, coinAmount: number, coin: CoinAvailable, name: string }>;
     let amount = 0;
+    let coinAmount = 0;
 
     transactions.forEach(item => {
       const coin = item.coin as CoinAvailable;
@@ -44,22 +45,24 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
           name: CRYPTOCURRENCIES[coin].name,
         };
       }
-
+      const tempCoinAmount = item.quantity * numberSign;
       amount += fiatAmount;
+      coinAmount += tempCoinAmount;
       amountPerCoin[coin].fiatAmount += fiatAmount;
-      amountPerCoin[coin].coinAmount += item.quantity * numberSign;
+      amountPerCoin[coin].coinAmount += tempCoinAmount;
     });
 
     const coinsData = Object.entries(amountPerCoin)?.map(([key, value]) => {
       const coin = CRYPTOCURRENCIES[key as CoinAvailable];
 
       return {
-        value: value.fiatAmount,
+        value: value.coinAmount,
         color: coin.color,
         text: coin.name,
         coin: value.coin,
+        fiatAmount: value.fiatAmount,
         coinAmount: value.coinAmount,
-        percentage: Number((value.fiatAmount / amount) * 100).toFixed(2),
+        percentage: value.coinAmount < 0 ? '0' : Number((value.coinAmount / coinAmount) * 100).toFixed(2),
       };
     }).sort((a, b) => b.value - a.value);
 
@@ -74,7 +77,7 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
     <CoinListItem
       coin={item.coin as CoinAvailable}
       coinName={item.text}
-      fiatAmount={item.value}
+      fiatAmount={item.fiatAmount}
       coinAmount={item.coinAmount}
       onPress={() => {
         navigation.navigate('Coin', { coin: item.coin });
@@ -87,7 +90,7 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
   }, []);
 
   const getItemLayout = useCallback((_: unknown, index: number) => (
-    { length: LIST_ITEM_HEIGHT, offset: LIST_ITEM_HEIGHT * index, index }
+    { length: LIST_ITEM_HEIGHT, offset: (LIST_ITEM_HEIGHT + LIST_ITEM_SEPARATOR_HEIGHT) * index, index }
   ), []);
 
   return (
@@ -102,7 +105,7 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
           <TotalBalanceCard totalFiatAmount={totalAmount} />
           <AreaChart transactions={transactions} onPointerShow={toggleFlatListScroll} />
           <View style={styles.headerContentWrapper}>
-            {transactions.length > 0 ? <PieChart data={data} title="Coins Overview" /> : <></>}
+            {data.length > 0 ? <PieChart data={data} title="Coins Overview" /> : <></>}
             <ListHeader.Root>
               <ListHeader.Title>Coins</ListHeader.Title>
               <ListHeader.Actions>
@@ -116,6 +119,7 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
       showsVerticalScrollIndicator={false}
       renderItem={renderItem}
       keyExtractor={item => String(item.coin)}
+      ItemSeparatorComponent={ListSeparatorRow}
       contentContainerStyle={styles.contentContainerStyle}
       ListEmptyComponent={<HomeEmptyList />}
       ref={flatListRef}
@@ -130,11 +134,6 @@ const styles = StyleSheet.create(((theme, rt) => ({
     backgroundColor: theme.colors.background,
   },
   contentContainerStyle: {
-    gap: {
-      sm: theme.spacing[3],
-      md: theme.spacing[4],
-      lg: theme.spacing[6],
-    },
     paddingTop: {
       sm: rt.insets.top + theme.spacing[5],
       md: rt.insets.top + theme.spacing[6],

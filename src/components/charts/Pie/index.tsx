@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Text, useWindowDimensions, View } from 'react-native';
 import { PieChart as GiftedPieChart } from 'react-native-gifted-charts';
 import { StyleSheet } from 'react-native-unistyles';
@@ -19,6 +19,8 @@ export function PieChart({ data = [], title }: PieChartProps) {
 
   const { width } = useWindowDimensions();
 
+  const pieData = useMemo(() => data.filter(item => item.value >= 0), [data]);
+
   return (
     <View
       style={styles.container}>
@@ -28,7 +30,7 @@ export function PieChart({ data = [], title }: PieChartProps) {
 
       <View style={styles.chartContent}>
         <GiftedPieChart
-          data={data}
+          data={pieData}
           donut
           showGradient
           radius={width / 4}
