@@ -61,13 +61,13 @@ export function AreaChart({ transactions, color = '#5DD44E', onPointerShow }: Pr
         endFillColor={color}
         startOpacity={0.4}
         endOpacity={0.01}
-        isAnimated
         thickness={styles.thickness.height}
         color={color}
         disableScroll
         animationDuration={1200}
         yAxisOffset={transactions.length === 0 ? -1 : 0}
         curved
+        onlyPositive
         hideDataPoints
         hideAxesAndRules
         adjustToWidth
