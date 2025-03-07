@@ -61,6 +61,14 @@ I used the [react-native-date-picker](https://github.com/henninghall/react-nativ
 ## List
 I stayed with the default flatList with some optimizations techniques, but we also can use [react-native-flashlist][https://shopify.github.io/flash-list/] that has more performance than the default flatList. 
 
+## Patterns
+I pattern that I am liking and I would like to share the implementation it's the Composition pattern that basically involves composing multiple components to create more complex components. I used in the List Item, so we can create different list items with the same base.
+
+## Structure
+I like to structure the app in modules, since this app its small the screen itself become the module, I have a src/* with shared components/fuctions that
+can be used by all the modules, and inside of each module I create related files to that module like (components, screens, utils).
+In this app we can see a small example on Home and Coin, if we think them as a module they have the components folder that has specific UI for this "module". 
+
 # 🚀 Run Project
 >**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
 ## Step 1: Start the Metro Server
@@ -142,7 +150,6 @@ https://github.com/user-attachments/assets/cda3fc66-53e0-4aca-aa0e-bae34cb46bc3
 ![image](./documentation/images/TransactionForm.png)
 ![image](./documentation/images/TransactionFormEdit.png)
 ![image](./documentation/images/CoinSelector.png)
-
 
 #  What's next?
 
