@@ -30,7 +30,6 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
   const { data, totalAmount } = useMemo(() => {
     const amountPerCoin = {} as Record<CoinAvailable, { fiatAmount: number, coinAmount: number, coin: CoinAvailable, name: string }>;
     let amount = 0;
-    let coinAmount = 0;
 
     transactions.forEach(item => {
       const coin = item.coin as CoinAvailable;
@@ -45,12 +44,18 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
           name: CRYPTOCURRENCIES[coin].name,
         };
       }
-      const tempCoinAmount = item.quantity * numberSign;
+
       amount += fiatAmount;
-      coinAmount += tempCoinAmount;
       amountPerCoin[coin].fiatAmount += fiatAmount;
-      amountPerCoin[coin].coinAmount += tempCoinAmount;
+      amountPerCoin[coin].coinAmount += item.quantity * numberSign;
     });
+
+    const coinsPositiveAmount = Object.values(amountPerCoin).reduce((acc, current) => {
+      if (current.coinAmount < 0) {
+        return acc;
+      }
+      return acc + current.coinAmount;
+    }, 0);
 
     const coinsData = Object.entries(amountPerCoin)?.map(([key, value]) => {
       const coin = CRYPTOCURRENCIES[key as CoinAvailable];
@@ -62,7 +67,7 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
         coin: value.coin,
         fiatAmount: value.fiatAmount,
         coinAmount: value.coinAmount,
-        percentage: value.coinAmount < 0 ? '0' : Number((value.coinAmount / coinAmount) * 100).toFixed(2),
+        percentage: value.coinAmount < 0 ? '0' : Number((value.coinAmount / coinsPositiveAmount) * 100).toFixed(2),
       };
     }).sort((a, b) => b.value - a.value);
 
