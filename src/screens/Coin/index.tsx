@@ -9,6 +9,7 @@ import { ButtonIcon } from '@/components/buttons/ButtonIcon';
 import { AreaChart } from '@/components/charts/Area';
 import { ListHeader } from '@/components/list/Header';
 import { LIST_ITEM_HEIGHT } from '@/components/list/Item/Root';
+import { LIST_ITEM_SEPARATOR_HEIGHT, ListSeparatorRow } from '@/components/list/SeparatorRow';
 import { CRYPTOCURRENCIES } from '@/config/cryptocurrencies';
 import { useQuery } from '@/database';
 import { Transaction } from '@/database/schemas/transaction';
@@ -74,7 +75,7 @@ export default function CoinScreen({ navigation, route }: CoinScreenProps) {
   }, []);
 
   const getItemLayout = useCallback((_: unknown, index: number) => (
-    { length: LIST_ITEM_HEIGHT, offset: LIST_ITEM_HEIGHT * index, index }
+    { length: LIST_ITEM_HEIGHT, offset: (LIST_ITEM_HEIGHT + LIST_ITEM_SEPARATOR_HEIGHT) * index, index }
   ), []);
 
   return (
@@ -112,6 +113,7 @@ export default function CoinScreen({ navigation, route }: CoinScreenProps) {
         showsVerticalScrollIndicator={false}
         renderItem={renderItem}
         keyExtractor={item => item._id.toString()}
+        ItemSeparatorComponent={ListSeparatorRow}
         contentContainerStyle={styles.contentContainerStyle}
         ref={flatListRef}
       />
@@ -135,12 +137,6 @@ const styles = StyleSheet.create(((theme, rt) => ({
     flex: 1,
   },
   contentContainerStyle: {
-    gap: {
-      sm: theme.spacing[3],
-      md: theme.spacing[4],
-      lg: theme.spacing[6],
-    },
-
     paddingBottom: {
       sm: rt.insets.bottom + theme.spacing[3],
       md: rt.insets.bottom + theme.spacing[4],
