@@ -50,24 +50,24 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
       amountPerCoin[coin].coinAmount += item.quantity * numberSign;
     });
 
-    const coinsPositiveAmount = Object.values(amountPerCoin).reduce((acc, current) => {
-      if (current.coinAmount < 0) {
+    const positiveFiatAmount = Object.values(amountPerCoin).reduce((acc, current) => {
+      if (current.fiatAmount < 0) {
         return acc;
       }
-      return acc + current.coinAmount;
+      return acc + current.fiatAmount;
     }, 0);
 
     const coinsData = Object.entries(amountPerCoin)?.map(([key, value]) => {
       const coin = CRYPTOCURRENCIES[key as CoinAvailable];
 
       return {
-        value: value.coinAmount,
+        value: value.fiatAmount,
         color: coin.color,
         text: coin.name,
         coin: value.coin,
         fiatAmount: value.fiatAmount,
         coinAmount: value.coinAmount,
-        percentage: value.coinAmount < 0 ? '0' : Number((value.coinAmount / coinsPositiveAmount) * 100).toFixed(2),
+        percentage: value.fiatAmount < 0 ? '0' : Number((value.fiatAmount / positiveFiatAmount) * 100).toFixed(2),
       };
     }).sort((a, b) => b.value - a.value);
 
